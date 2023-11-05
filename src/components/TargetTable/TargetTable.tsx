@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import { AssociatedTarget } from "../../types";
-import ExternalLink from "../ExternalLink/ExternalLink";
-
-const TARGET_PROFILE_URL = "https://platform.opentargets.org/target";
+import Tab from "../Tab";
+import TargetRow from "../TargetRow";
 
 const TargetTable = ({ data }: { data: AssociatedTarget[] }) => {
   return (
@@ -16,19 +15,18 @@ const TargetTable = ({ data }: { data: AssociatedTarget[] }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map(({ target, score }) => (
-          <tr>
-            <td>+</td>
-            <td>
-              <ExternalLink
-                baseUrl={TARGET_PROFILE_URL}
-                id={target.id}
-                symbol={target.approvedSymbol}
-              />
-            </td>
-            <td>{target.approvedName}</td>
-            <td>{score.toFixed(3)}</td>
-          </tr>
+        {data.map(({ target, score }, i) => (
+          <TargetRow key={target.id} target={target} score={score} index={i}>
+            <Tab
+              tabs={[
+                { label: "Bar Chart", name: "bar_chart" },
+                { label: "Radar Chart", name: "radar_chart" },
+              ]}
+            >
+              <li>tab 1</li>
+              <li>tab 2</li>
+            </Tab>
+          </TargetRow>
         ))}
       </tbody>
     </table>

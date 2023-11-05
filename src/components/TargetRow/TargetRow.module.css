@@ -1,0 +1,22 @@
+.collapse {
+  display: none;
+}
+
+.row {
+  &.expandable {
+    &.hidden { 
+      border: none;
+    }
+    .cell {
+      padding: 0;
+    }
+  }
+}
+
+.content {
+  display:none;
+}
+
+.collapse:checked ~ .content {
+  display: initial;
+}
