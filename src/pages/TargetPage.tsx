@@ -1,7 +1,9 @@
-import { DISEASE_QUERY } from "../graphql/queries/disease";
 import { useQuery } from "@apollo/client";
-import { AssociatedTarget } from "../types";
+
 import TargetTable from "../components/TargetTable";
+import { DISEASE_QUERY } from "../graphql/queries/disease";
+import { AssociatedTarget } from "../types";
+
 function TargetPage() {
   const { loading, error, data } = useQuery(DISEASE_QUERY, {
     variables: { limit: 100 },

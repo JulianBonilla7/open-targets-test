@@ -1,10 +1,12 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { AssociatedTarget } from "../types";
+import { AssociatedTarget } from "../../types";
+import ExternalLink from "../ExternalLink/ExternalLink";
+
+const TARGET_PROFILE_URL = "https://platform.opentargets.org/target";
 
 const TargetTable = ({ data }: { data: AssociatedTarget[] }) => {
   return (
-    <table className="uk-table">
+    <table className="uk-table uk-table-divider">
       <thead>
         <tr>
           <th></th>
@@ -17,9 +19,15 @@ const TargetTable = ({ data }: { data: AssociatedTarget[] }) => {
         {data.map(({ target, score }) => (
           <tr>
             <td>+</td>
-            <td>{target.approvedSymbol}</td>
+            <td>
+              <ExternalLink
+                baseUrl={TARGET_PROFILE_URL}
+                id={target.id}
+                symbol={target.approvedSymbol}
+              />
+            </td>
             <td>{target.approvedName}</td>
-            <td>{score}</td>
+            <td>{score.toFixed(3)}</td>
           </tr>
         ))}
       </tbody>
