@@ -18,7 +18,7 @@ function TargetPage() {
   }
 
   const MAX_ITEMS_TO_DISPLAY = 10;
-  const { rows }: { rows: AssociatedTarget[]} = data.disease.associatedTargets;
+  const { rows }: { rows: AssociatedTarget[] } = data.disease.associatedTargets;
   console.log(rows);
   const filteredData = [...rows]
     .sort((a, b) => b.score - a.score)
@@ -26,10 +26,11 @@ function TargetPage() {
   console.log(filteredData);
 
   return (
-    <>
-      <h1>Genes associated with lung carcinoma</h1>
-      <TargetTable data={filteredData}/>
-    </>
+    <div className="uk-container">
+      <h1 className="uk-margin-top">Genes associated with lung carcinoma</h1>
+
+      <TargetTable data={filteredData} />
+    </div>
   );
 }
 

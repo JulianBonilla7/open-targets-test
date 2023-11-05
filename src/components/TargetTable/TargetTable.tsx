@@ -36,7 +36,7 @@ const TargetTable = ({ data }: { data: AssociatedTarget[] }) => {
 };
 
 TargetTable.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 export default TargetTable;
