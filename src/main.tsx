@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-
 import {
   ApolloProvider,
   ApolloClient,
   InMemoryCache,
 } from "@apollo/client";
 
-import "./index.css";
+import App from "./App.tsx";
+import { API_URL } from "./constants.ts";
 
-const API_URL = "https://api.platform.opentargets.org/api/v4/graphql";
 const client = new ApolloClient({
   uri: API_URL,
   cache: new InMemoryCache(),

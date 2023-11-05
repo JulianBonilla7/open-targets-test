@@ -1,15 +1,13 @@
 import { PropsWithChildren, useState } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
-import styles from "./TargetRow.module.css";
-import { Target } from "../../types";
+
 import ExternalLink from "../ExternalLink/ExternalLink";
+import { TARGET_PROFILE_URL } from "../../constants";
+import { ShortTarget } from "../../types";
+import styles from "./TargetRow.module.css";
 
-const TARGET_PROFILE_URL = "https://platform.opentargets.org/target";
-
-type ShortTarget = Pick<Target, "id" | "approvedName" | "approvedSymbol">;
-
-type TargetRowProps = {
+export type TargetRowProps = {
   target: ShortTarget;
   score: number;
   index: number;
@@ -31,8 +29,10 @@ const TargetRow = ({
   return (
     <>
       <tr className={styles.row}>
-        <td>
-          <label htmlFor={`handle${index}`}>{handlerLabel}</label>
+        <td className="uk-background-primary uk-light">
+          <label className={styles.handler} htmlFor={`handle${index}`}>
+            {handlerLabel}
+          </label>
         </td>
         <td>
           <ExternalLink
@@ -67,6 +67,10 @@ const TargetRow = ({
   );
 };
 
-TargetRow.propTypes = {};
+TargetRow.propTypes = {
+  target: PropTypes.object,
+  score: PropTypes.number,
+  index: PropTypes.number,
+};
 
 export default TargetRow;

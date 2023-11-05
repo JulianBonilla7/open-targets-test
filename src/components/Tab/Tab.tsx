@@ -1,14 +1,11 @@
-import { useEffect, useRef, PropsWithChildren } from "react"
-import UIKit from 'uikit';
-
-type TabItem = {
-  name: string,
-  label: string,
-};
+import { useEffect, useRef, PropsWithChildren } from "react";
+import UIKit from "uikit";
+import { TabItem } from "../../types";
 
 type TabProps = {
-  tabs: TabItem[]
+  tabs: TabItem[];
 };
+
 const Tab = ({ tabs, children }: PropsWithChildren<TabProps>) => {
   const tabContainerRef = useRef(null);
 
@@ -19,15 +16,15 @@ const Tab = ({ tabs, children }: PropsWithChildren<TabProps>) => {
   return (
     <div className="uk-padding-small">
       <ul ref={tabContainerRef}>
-        {tabs.map(tab => (
-          <li key={tab.name}><a href="#">{tab.label}</a></li>
+        {tabs.map((tab) => (
+          <li key={tab.name}>
+            <a href="#">{tab.label}</a>
+          </li>
         ))}
       </ul>
-      <ul className="uk-switcher">
-        {children}
-      </ul>
+      <ul className="uk-switcher">{children}</ul>
     </div>
-  )
-}
+  );
+};
 
-export default Tab
+export default Tab;

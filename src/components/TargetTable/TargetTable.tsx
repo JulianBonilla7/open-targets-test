@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
-import { AssociatedTarget } from "../../types";
+
+import Chart from "../Chart";
 import Tab from "../Tab";
 import TargetRow from "../TargetRow";
+import { AssociatedTarget } from "../../graphql/queries/schema/types";
+import { TAB_CONFIG } from "../../constants";
 
 const TargetTable = ({ data }: { data: AssociatedTarget[] }) => {
   return (
@@ -15,16 +18,23 @@ const TargetTable = ({ data }: { data: AssociatedTarget[] }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map(({ target, score }, i) => (
+        {data.map(({ target, score, datatypeScores }, i) => (
           <TargetRow key={target.id} target={target} score={score} index={i}>
-            <Tab
-              tabs={[
-                { label: "Bar Chart", name: "bar_chart" },
-                { label: "Radar Chart", name: "radar_chart" },
-              ]}
-            >
-              <li>tab 1</li>
-              <li>tab 2</li>
+            <Tab tabs={TAB_CONFIG}>
+              <li>
+                <Chart
+                  type="bar"
+                  symbol={target.approvedSymbol}
+                  scores={datatypeScores}
+                />
+              </li>
+              <li>
+                <Chart
+                  type="radar"
+                  symbol={target.approvedSymbol}
+                  scores={datatypeScores}
+                />
+              </li>
             </Tab>
           </TargetRow>
         ))}
